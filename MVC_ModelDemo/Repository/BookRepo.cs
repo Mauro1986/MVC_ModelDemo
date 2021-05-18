@@ -13,6 +13,24 @@ namespace MVC_ModelDemo.Repository
 
             return FakeDatabase();
         }
+
+        public Book GetDetail(int id)
+        {
+            return FakeDatabase().Find(book => book.Id.Equals(id));
+        }
+
+        public Book EditBook(int id)
+        { 
+           
+        return FakeDatabase().Find(book => book.Id.Equals(id));
+        }
+        public Book UpdateBook(Book newbook)
+        {
+            var oldBook = FakeDatabase().FirstOrDefault(b => b.Id.Equals(newbook.Id));
+            FakeDatabase().Remove(oldBook);
+            FakeDatabase().Add(newbook);
+            return newbook;
+        }
         private List<Book> FakeDatabase()
         {
             return new List<Book>()

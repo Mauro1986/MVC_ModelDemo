@@ -41,5 +41,39 @@ namespace MVC_ModelDemo.Controllers
            var books= _bookrepository.GetAllBooks();
             return View(books);
         }
+
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            var book = _bookrepository.GetDetail(id);
+            return View(book);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var book = _bookrepository.EditBook(id);
+
+            return View(book);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Book modifiedBook)
+        {
+            var newBook = _bookrepository.UpdateBook(modifiedBook);
+            return View(newBook);
+        }
+
+        [HttpGet]
+        public IActionResult Dummy()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Dummy(string personName)
+        {
+            return View();
+        }
     }
 }
